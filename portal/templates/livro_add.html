@@ -1,0 +1,57 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<form action="{% url 'livro_add' %}" method="POST" style="margin: auto; width: 400px;">{% csrf_token %}
+    <div class="input-group mb-3">
+        <div class="input-group-prepend">
+            <span class='input-group-text' id="basic-addon1">Titulo</span>
+        </div>
+        <input type="text" class="form-control" placeholder="" name="titulo">
+    </div>
+    <br>
+    <div class="input-group mb-3">
+        <div class="input-group-prepend">
+            <span class='input-group-text' id="basic-addon1">Subtitulo</span>
+        </div>
+        <input type="text" class="form-control" placeholder="" name="subtitulo">
+    </div>
+    <br>
+    <div class="input-group mb-3">
+        <div class="input-group-prepend">
+            <span class='input-group-text' id="basic-addon1">Data de Lançamento</span>
+        </div>
+        <input type="date" class="form-control" placeholder="" name="data_lancamento">
+    </div>
+    <div class="input-group mb-3">
+        <div class="input-group-prepend">
+            <span class='input-group-text' id="basic-addon1">ISBN</span>
+        </div>
+        <input type="text" class="form-control" placeholder="" name="isbn">
+    </div>
+    <div class="input-group mb-3">
+        <div class="input-group-prepend">
+            <span class='input-group-text' id="basic-addon1">Número de Páginas</span>
+        </div>
+        <input type="int" class="form-control" placeholder="" name="numero_paginas">
+    </div>
+    <div class="input-group mb-3">
+        <div class="input-group-prepend" width="300">
+            <label class="input-group-text" for="basic-addon1">Autor</label>
+        </div>
+        <select name="autor" class="form-control" id="inputGroupSelect01">
+            <option selected>Clique para selecionar um autor</option>
+            {% for autor in autores %}
+            <option value="{{ autor.id }}">{{ autor.nome }} ({{ autor.email }})</option>
+            {% endfor %}
+        </select>
+    </div>
+    <br>
+    <center>
+        <button class="btn btn-success" type="submit">Salvar</button>
+        <a href="{% url 'livro' %}" class="btn btn-danger">Cancelar</a>
+    </center>
+    <br>
+    <br>
+</form>
+
+{% endblock %}
